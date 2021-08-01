@@ -20,20 +20,9 @@ class Code(private val colors: List<Colors>): List<Colors> by colors {
         return exactColors.map { Black } + sameColors.map { White }
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
+    override fun equals(other: Any?) = other is Code && other.colors == colors
 
-        other as Code
-
-        if (colors != other.colors) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return colors.hashCode()
-    }
+    override fun hashCode() = colors.hashCode()
 
     override fun toString() = "Code($colors)"
 }

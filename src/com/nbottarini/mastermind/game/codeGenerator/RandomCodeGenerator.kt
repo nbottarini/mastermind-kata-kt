@@ -4,6 +4,7 @@ import com.nbottarini.mastermind.game.codes.Code
 import com.nbottarini.mastermind.game.codes.Colors
 
 class RandomCodeGenerator: CodeGenerator {
-    override fun generate() =
-        Code(Colors.values().random(), Colors.values().random(), Colors.values().random(), Colors.values().random())
+    private val colors = Colors.values()
+
+    override fun generate() = Code(colors.random(), colors.random(), colors.random(), colors.random())
 }
