@@ -10,15 +10,15 @@ class Code(private val colors: List<Colors>): List<Colors> by colors {
         if (colors.size != 4) throw InvalidCodeError()
     }
 
-    private fun colorsInSamePosition(other: Code) = colors.indices.filter { colors[it] == other.colors[it] }
-
-    private fun sameColors(other: Code) = colors.indices.filter { other.colors.contains(colors[it]) }
-
     fun calculatePegsMatching(other: Code): List<Pegs> {
         val exactColors = colorsInSamePosition(other)
         val sameColors = sameColors(other) - exactColors
         return exactColors.map { Black } + sameColors.map { White }
     }
+
+    private fun colorsInSamePosition(other: Code) = colors.indices.filter { colors[it] == other.colors[it] }
+
+    private fun sameColors(other: Code) = colors.indices.filter { other.colors.contains(colors[it]) }
 
     override fun equals(other: Any?) = other is Code && other.colors == colors
 
